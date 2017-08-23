@@ -8,17 +8,19 @@ angular.module('BitstampTickerApp')
         $scope.text1 = "sdfdsdsdgsdsggds";
         $scope.addon = 1;
 
-        $scope.tickerInterval = 5000;
+        $scope.tickerInterval = 600;
         $scope.tickerData;
         $scope.date;
         $scope.calculatedData;
         $scope.setedAddon = 1;
         //var date = new Date(unix_timestamp * 1000);
         $scope.selectedParity = "btcusd";
-        //myVar = setInterval(getParity, 15000);
+        myVar = setInterval(getParity,  $scope.tickerInterval * 1000);
 
 
         $scope.parities = ["btcusd", "btceur", "eurusd", "xrpusd", "xrpeur", "xrpbtc", "ltcusd", "ltceur", "ltcbtc", "ethusd", "etheur", "ethbtc"];
+
+
 
         getParity();
         function getParity() {
@@ -31,7 +33,7 @@ angular.module('BitstampTickerApp')
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             });
             request.success(function (data) {
-
+                console.log(data);
                 console.log(data.timestamp);
                 console.log(new Date());
                 $scope.tickerData = data;

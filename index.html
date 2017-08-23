@@ -29,177 +29,84 @@
 
 <body ng-controller="TickerController">
 
-
-<!-- <div ng-include="'nav.html'"></div> -->
-<!-- /.container -->
-
-
-<!-- Page Content -->
 <div class="container">
-
-    <!-- Page Header -->
     <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">{{greeting}}
 
-            </h1>
+        <p>Last update from Bitstamp server: {{date}} (refresh interval set to {{tickerInterval}}s)</p>
+    </div>
+    <p>Red values are calculated with addon</p>
+    <table class="table table-bordered">
+        <thead>
+        <tr class="active">
+            <th>High</th>
+            <th>Ask</th>
+            <th>Bid</th>
+            <th>Last</th>
+            <th>Low</th>
+            <th>Open</th>
+            <th>Timestamp</th>
+            <th>volume</th>
+            <th>vwap</th>
+            <th>Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="info">
+            <td>{{tickerData.high}}</td>
+            <td>{{tickerData.ask}}</td>
+            <td>{{tickerData.bid}}</td>
+            <td>{{tickerData.last}}</td>
+            <td>{{tickerData.low}}</td>
+            <td>{{tickerData.open}}</td>
+            <td>{{tickerData.timestamp}}</td>
+            <td>{{tickerData.volume}}</td>
+            <td>{{tickerData.vwap}}</td>
+            <td>--</td>
+
+        </tr>
+        <tr class="info">
+            <td class="danger">{{calculatedData.high}}</td>
+            <td>{{calculatedData.ask}}</td>
+            <td>{{calculatedData.bid}}</td>
+            <td class="danger">{{calculatedData.last}}</td>
+            <td>{{calculatedData.low}}</td>
+            <td>{{calculatedData.open}}</td>
+            <td>{{calculatedData.timestamp}}</td>
+            <td>{{calculatedData.volume}}</td>
+            <td>{{calculatedData.vwap}}</td>
+            <td>--</td>
+
+        </tr>
+        </tbody>
+    </table>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+
+                <label>Addon value {{setedAddon}}</label><br>
+                <input ng-model="addon"></input><br>
+                <button class="btn btn-sm btn-info" ng-click="setAddon(addon)">Set Addon</button>
+
+            </div>
+
+            <div class="col-4">
+
+                <label>Selected parity {{selectedParity}}</label><br>
+                <select ng-model="selectedParity">
+                    <option ng-repeat="x in parities" value="{{x}}">{{x}}</option>
+                </select>
+
+            </div>
         </div>
     </div>
-    <!-- /.row -->
-    <div class="row">
-        <p>{{tickerData.high}} -- {{tickerData.last}}</p>
-        <p>{{calculatedData.high}} -- {{calculatedData.last}}</p>
 
-
-        <p>Date: {{date}}</p>
-    </div>
-
-
-    <div class="row">
-        <div class="col-lg-6">
-            <label>Addon value {{setedAddon}}</label><br>
-            <input ng-model="addon"></input><br>
-            <button class="btn btn-sm btn-info" ng-click="setAddon(addon)">Set Addon</button>
-        </div>
-        <div class="col-lg-6">
-            <label>Selected parity {{selectedParity}}</label><br>
-            <select ng-model="selectedParity">
-                <option ng-repeat="x in parities" value="{{x}}">{{x}}</option>
-            </select>
-        </div>
-    </div>
-
-    <!-- Projects Row -->
-    <!--  <div class="blank">
-         <div class="row">
-             <div ng-repeat="new in news | pagination:pageSize*crtPage | limitTo :pageSize">
-                 <div class="col-md-4 portfolio-item" >
-                     <a href="#" ng-click="showValue(new)">
-                         <img class="img-responsive" src="{{new.picture}}" alt="">
-                     </a>
-
-                     <h3>
-                         <a href="#" ng-click="showValue(new)">{{new.title}}</a>
-                     </h3>
-                     <p>{{new.description}}</p>
-                     <p class="col-md-7 col-md-offset-5">Author: {{new.author}} <br> Date: {{new.date}}</p>
-
-                     <p class="col-md-7 col-md-offset-5"></p>
-
-                     <button type="button" class="btn btn-primary"
-
-                     ng-click="showValue(new)">Show details</button>
-                 </div>
-             </div>
-
-         </div>
-     </div>
- -->
     <hr>
-    <!--
-
-        <div class="blank">
-            <div class="row text-center">
-                <div class="col-lg-12" ng-show="news.length">
-                    <ul class="pagination">
-                        <li>
-                            <button type="button" ng-disabled="crtPage == 0" class="btn btn-primary"
-                                    ng-click="crtPage=crtPage-1">PREV
-                            </button>
-                        </li>
-
-
-                        <li>
-                            <button type="button" class="btn btn-primary"
-                                    ng-disabled="crtPage >= news.length/pageSize - 1"
-                                    ng-click="crtPage = crtPage+1">NEXT
-                            </button>
-                        </li>
-                    </ul>
-                    <div style="widht:10%; float:right; padding-right: 10px;">
-                        <label for="sel1">Items per page</label>
-                        <select class="form-control" id="sel1" ng-model="pageSize">
-                            <option>3</option>
-                            <option>9</option>
-                            <option>18</option>
-                            <option>27</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-    -->
 
 </div>
-<hr>
-<!-- /.row -->
-<div class="blank">
-    <h1>{{text1}}</h1>
-    <!--<div class="row text-center">
-        <div class="col-md-8 col-md-offset-2" ng-show="showNews">
 
-            <img class="img-responsive" src="{{crtElement.picture}}" alt="">
 
-            <h3>
-                {{crtElement.title}}
-            </h3>
-            <div class="col-md-4">
-                <h4>{{crtElement.description}}</h4>
-            </div>
-            <div class="col-md-8">
-                <p>{{crtElement.details}}</p>
-            </div>
-            <div class="col-md-12">
-                <p class="col-md-7 col-md-offset-5">Author: {{crtElement.author}}<br>Date: {{crtElement.date}}</p>
-
-                <p class="col-md-7 col-md-offset-5"></p>
-                <button type="button" class="btn btn-primary"
-
-                        ng-click="showNews=!showNews">Close
-                </button>
-
-                <button type="button" class="btn btn-primary"
-
-                        ng-click="getComments(crtElement.id)">Show comments
-                </button>
-
-                <div ng-repeat="comment in comments">
-                    <div class="row">
-                        <p class="col-md-8 col-md-offset-2">{{comment.comment}}</p>
-                        <br>
-                        <p class="col-md-6 col-md-offset-5">by: {{comment.user.name}}, {{comment.user.email}}</p>
-                        <button ng-click="setToSendMail(comment.user.email)" type="button"
-                                class="btn btn-info btn-sm col-md-6 col-md-offset-5" data-toggle="modal"
-                                data-target="#myModal">Send {{comment.user.name}} a email
-                        </button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group">
-                        <label for="comment">Comment:</label>
-                        <textarea ng-model="userComment" class="form-control" rows="5" id="comment"></textarea>
-                        <button ng-click="postComment(crtElement.id)" type="button" class="btn btn-primary">Post
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>-->
-</div>
-<hr>
-
-<!-- Footer -->
-<!--<div ng-include="'footer.html'">-->
-
-</div>
-<!-- /.container -->
-
-<!-- jQuery -->
-
-<!-- <script src="x2js/xml2json.js"></script>
--->
 <script src="angular/app.js"></script>
 <script src="angular/tickerController.js"></script>
 <!--<script src="angular/navController.js"></script>-->
