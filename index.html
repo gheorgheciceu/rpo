@@ -32,7 +32,10 @@
 <div class="container">
     <div class="row">
 
-        <p>Last update from Bitstamp server: {{date}} (refresh interval set to {{tickerInterval}}s)</p>
+        <p>Last update from Bitstamp server: {{date}}</p>
+        <p> (refresh interval set to {{tickerInterval}}s, the ip might get
+            banned by bitstamp if we make too many API calls -<b><font color="orange"> we don't want that</font></b>)
+        </p>
     </div>
     <p>Red values are calculated with addon</p>
     <table class="table table-bordered">
