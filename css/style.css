@@ -1,0 +1,16 @@
+body { 
+	background-image: url('background.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	z-index: -999; 
+
+
+
+	background-size: cover;
+
+}
+.blank{
+	background-color: #ffffff;
+
+}
+ 
