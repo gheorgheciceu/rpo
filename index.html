@@ -29,7 +29,7 @@
 
 <body ng-controller="TickerController">
 <div ng-include="'nav.html'"></div>
-<div class="container" >
+<div class="container">
     <div class="row">
 
         <p>Last update from Bitstamp server: {{date}}</p>
@@ -100,17 +100,11 @@
                 <select ng-model="selectedParity">
                     <option ng-repeat="x in parities" value="{{x}}">{{x}}</option>
                 </select>
-
             </div>
         </div>
     </div>
-
     <hr>
-
 </div>
-
-
-
 <script src="angular/app.js"></script>
 <script src="angular/tickerController.js"></script>
 <!--<script src="angular/navController.js"></script>-->
