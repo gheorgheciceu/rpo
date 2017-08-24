@@ -1,8 +1,7 @@
 'use strict;'
 angular.module('BitstampTickerApp')
-    .controller('TickerController', function ($scope, $http) {
-        var hourlyApi = "https://www.bitstamp.net/api/ticker_hour/";
-        var realTimeApi = "https://www.bitstamp.net/api/v2/ticker/";
+    .controller('Bl3pTickerController', function ($scope, $http) {
+
 
         $scope.greeting = "hello";
         $scope.text1 = "sdfdsdsdgsdsggds";
@@ -18,7 +17,7 @@ angular.module('BitstampTickerApp')
         myVar = setInterval(getParity,  $scope.tickerInterval * 1000);
 
 
-        $scope.parities = ["btcusd", "btceur", "eurusd", "xrpusd", "xrpeur", "xrpbtc", "ltcusd", "ltceur", "ltcbtc", "ethusd", "etheur", "ethbtc"];
+        $scope.parities = ["btcusd"];
 
 
 
@@ -26,7 +25,7 @@ angular.module('BitstampTickerApp')
         function getParity() {
             var request = $http({
                 method: "post",
-                url: "php/instantTicker.php",
+                url: "php/Bl3pInstantTicker.php",
                 data: {
                     parity: $scope.selectedParity
                 },
@@ -53,7 +52,6 @@ angular.module('BitstampTickerApp')
 
             $scope.calculatedData.high = $scope.calculatedData.high * $scope.setedAddon;
             $scope.calculatedData.last = $scope.calculatedData.last * $scope.setedAddon;
-
         }
 
         function timeConverter(UNIX_timestamp) {

@@ -27,12 +27,12 @@
 
 </head>
 
-<body ng-controller="TickerController">
+<body ng-controller="Bl3pTickerController">
 <div ng-include="'nav.html'"></div>
-<div class="container" >
+<div class="container">
     <div class="row">
 
-        <p>Last update from Bitstamp server: {{date}}</p>
+        <p>Last update from Bl3p server: {{date}}</p>
         <p> (refresh interval set to {{tickerInterval}}s, the ip might get
             banned by bitstamp if we make too many API calls -<b><font color="orange"> we don't want that</font></b>)
         </p>
@@ -46,10 +46,10 @@
             <th>Bid</th>
             <th>Last</th>
             <th>Low</th>
-            <th>Open</th>
+
             <th>Timestamp</th>
             <th>volume</th>
-            <th>vwap</th>
+
             <th>Options</th>
         </tr>
         </thead>
@@ -60,10 +60,10 @@
             <td>{{tickerData.bid}}</td>
             <td>{{tickerData.last}}</td>
             <td>{{tickerData.low}}</td>
-            <td>{{tickerData.open}}</td>
+
             <td>{{tickerData.timestamp}}</td>
-            <td>{{tickerData.volume}}</td>
-            <td>{{tickerData.vwap}}</td>
+            <td>{{tickerData.volume["24h"]}}</td>
+
             <td>--</td>
 
         </tr>
@@ -73,10 +73,10 @@
             <td>{{calculatedData.bid}}</td>
             <td class="danger">{{calculatedData.last}}</td>
             <td>{{calculatedData.low}}</td>
-            <td>{{calculatedData.open}}</td>
+
             <td>{{calculatedData.timestamp}}</td>
-            <td>{{calculatedData.volume}}</td>
-            <td>{{calculatedData.vwap}}</td>
+            <td>{{calculatedData.volume["24h"]}}</td>
+
             <td>--</td>
 
         </tr>
@@ -110,9 +110,8 @@
 </div>
 
 
-
 <script src="angular/app.js"></script>
-<script src="angular/tickerController.js"></script>
+<script src="angular/bl3pTickerController.js"></script>
 <!--<script src="angular/navController.js"></script>-->
 <script src="js/jquery.js"></script>
 
