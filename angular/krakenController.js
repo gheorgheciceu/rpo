@@ -43,7 +43,7 @@ angular.module('BitstampTickerApp')
                 $scope.tickerData = data;
 
                 $scope.krakenPriceWithAddon =  data.result.XXBTZEUR.a[0]*1.07;
-                calculateAddonValue( $scope.krakenPriceWithAddon);
+                calculateAddonValue( $scope.setedAddon);
 
             });
         }
