@@ -54,7 +54,7 @@ angular.module('BitstampTickerApp')
         }
 
         function calculateAddonValue(dataObject) {
-            $scope.eurToBtc = dataObject/ $scope.krakenPriceWithAddon;
+            $scope.eurToBtc = (dataObject/$scope.krakenPriceWithAddon).toFixed(8);
 
         }
 
