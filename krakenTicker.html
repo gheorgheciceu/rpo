@@ -27,59 +27,58 @@
 
 </head>
 
-<body ng-controller="Bl3pTickerController">
+<body ng-controller="KrakenTickerController">
 <div ng-include="'nav.html'"></div>
 <div class="container">
     <div class="row">
 
-        <p>Last update from Bl3p server: {{date}}</p>
-        <p> (refresh interval set to {{tickerInterval}}s, the ip might get
-            banned by bitstamp if we make too many API calls -<b><font color="orange"> we don't want that</font></b>)
+        <p>Last update from Kraken server: {{date}}</p>
+        <p>refresh interval set to {{tickerInterval}}s
         </p>
     </div>
-    <p>Red values are calculated with addon</p>
+
     <table class="table table-bordered">
         <thead>
         <tr class="active">
-            <th>High</th>
+            <!--<th>High</th>-->
             <th>Ask</th>
-            <th>Bid</th>
-            <th>Last</th>
-            <th>Low</th>
+            <!--<th>Bid</th>-->
+            <!--<th>Last</th>-->
+            <!--<th>Low</th>-->
 
-            <th>Timestamp</th>
-            <th>volume</th>
+            <!--<th>Timestamp</th>-->
+            <!--<th>volume</th>-->
 
-            <th>Options</th>
+            <!--<th>Options</th>-->
         </tr>
         </thead>
         <tbody>
         <tr class="info">
-            <td>{{tickerData.high}}</td>
-            <td>{{tickerData.ask}}</td>
-            <td>{{tickerData.bid}}</td>
+            <!-- <td>{{tickerData.high}}</td>-->
+            <td>{{krakenPriceWithAddon}}</td>
+            <!--<td>{{tickerData.bid}}</td>
             <td>{{tickerData.last}}</td>
             <td>{{tickerData.low}}</td>
 
             <td>{{tickerData.timestamp}}</td>
             <td>{{tickerData.volume["24h"]}}</td>
 
-            <td>--</td>
+            <td>&#45;&#45;</td>-->
 
         </tr>
-        <tr class="info">
-            <td class="danger">{{calculatedData.high}}</td>
-            <td>{{calculatedData.ask}}</td>
-            <td>{{calculatedData.bid}}</td>
-            <td class="danger">{{calculatedData.last}}</td>
-            <td>{{calculatedData.low}}</td>
+        <!-- <tr class="info">
+             <td class="danger">{{calculatedData.high}}</td>
+             <td>{{calculatedData.ask}}</td>
+             <td>{{calculatedData.bid}}</td>
+             <td class="danger">{{calculatedData.last}}</td>
+             <td>{{calculatedData.low}}</td>
 
-            <td>{{calculatedData.timestamp}}</td>
-            <td>{{calculatedData.volume["24h"]}}</td>
+             <td>{{calculatedData.timestamp}}</td>
+             <td>{{calculatedData.volume["24h"]}}</td>
 
-            <td>--</td>
+             <td>&#45;&#45;</td>
 
-        </tr>
+         </tr>-->
         </tbody>
     </table>
 
@@ -88,7 +87,7 @@
         <div class="row">
             <div class="col-4">
 
-                <label>Addon value {{setedAddon}}</label><br>
+                <label>Ammount in EUR {{setedAddon}}</label><br>
                 <input ng-model="addon"></input><br>
                 <button class="btn btn-sm btn-info" ng-click="setAddon(addon)">Set Addon</button>
 
@@ -96,10 +95,8 @@
 
             <div class="col-4">
 
-                <label>Selected parity {{selectedParity}}</label><br>
-                <select ng-model="selectedParity">
-                    <option ng-repeat="x in parities" value="{{x}}">{{x}}</option>
-                </select>
+                <label>Ammount in BTC: {{eurToBtc}}</label><br>
+
 
             </div>
         </div>
@@ -111,7 +108,7 @@
 
 
 <script src="angular/app.js"></script>
-<script src="angular/bl3pTickerController.js"></script>
+<script src="angular/krakenController.js"></script>
 <!--<script src="angular/navController.js"></script>-->
 <script src="js/jquery.js"></script>
 

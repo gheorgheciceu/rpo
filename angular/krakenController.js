@@ -1,6 +1,6 @@
 'use strict;'
 angular.module('BitstampTickerApp')
-    .controller('TickerController', function ($scope, $http) {
+    .controller('KrakenTickerController', function ($scope, $http) {
         var hourlyApi = "https://www.bitstamp.net/api/ticker_hour/";
         var realTimeApi = "https://www.bitstamp.net/api/v2/ticker/";
 
@@ -12,6 +12,9 @@ angular.module('BitstampTickerApp')
         $scope.tickerData;
         $scope.date;
         $scope.calculatedData;
+        $scope.krakenPriceWithAddon;
+        $scope.eurToBtc;
+
         $scope.setedAddon = 1;
         //var date = new Date(unix_timestamp * 1000);
         $scope.selectedParity = "btcusd";
@@ -24,9 +27,10 @@ angular.module('BitstampTickerApp')
 
         getParity();
         function getParity() {
+            $scope.date = new Date();
             var request = $http({
                 method: "post",
-                url: "php/instantTicker.php",
+                url: "php/krakenTicker.php",
                 data: {
                     parity: $scope.selectedParity
                 },
@@ -38,21 +42,19 @@ angular.module('BitstampTickerApp')
                 console.log(new Date());
                 $scope.tickerData = data;
                 calculateAddonValue(data);
+                $scope.krakenPriceWithAddon =  data.result.XXBTZEUR.a[0]*1.07;
 
-                $scope.date = timeConverter(data.timestamp);
+
             });
         }
 
         $scope.setAddon = function (val) {
             $scope.setedAddon = val;
-            calculateAddonValue($scope.tickerData);
+            calculateAddonValue(val);
         }
 
         function calculateAddonValue(dataObject) {
-            $scope.calculatedData = Object.create(dataObject);
-
-            $scope.calculatedData.high = $scope.calculatedData.high * $scope.setedAddon;
-            $scope.calculatedData.last = $scope.calculatedData.last * $scope.setedAddon;
+            $scope.eurToBtc = dataObject/ $scope.krakenPriceWithAddon;
 
         }
 
