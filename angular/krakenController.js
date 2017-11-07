@@ -8,7 +8,7 @@ angular.module('BitstampTickerApp')
         $scope.text1 = "sdfdsdsdgsdsggds";
         $scope.addon = 1;
 
-        $scope.tickerInterval = 600;
+        $scope.tickerInterval = 20;
         $scope.tickerData;
         $scope.date;
         $scope.calculatedData;
